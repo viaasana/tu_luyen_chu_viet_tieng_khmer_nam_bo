@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HỆ THỐNG TỰ LUYỆN CHỮ VIẾT TIẾNG KHMER</title>
+    <style>
+        html, body {width: 100%;height: 100%;}
+        /**pc**/
+        body{
+            background-color: #e8eaed;
+            background-size: cover;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            
+        }
+        #background{
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-image: url("./image/ptdtnttv.jpg");
+            background-size: cover;
+            
+        }
+        #home-header{
+            position: fixed;
+            background-color: #e8eaed;
+            width: 260px;
+            height: 80px;
+            color: rgb(56 114 120);
+            border: 2px solid black;
+            border-radius: 15px 15px 15px 15px;
+            left: 50%;
+            top: 10%;
+            width: max-content;
+            height: max-content;
+            z-index: 10;
+            box-shadow: 20px 20px 60px #c1c2c5,
+             -20px -20px 60px #ffffff;
+        }
+        #home-header{
+            transform: translateX(-50%);
+            position: fixed;
+        }
+        #home-header b{
+            padding-left: 5px;
+
+        }
+       #consonants{
+            top: 20%;
+            left: 25%;
+       }
+       #vowel{
+            top: 20%;
+            left: 60%;
+       }
+       #home-luyen-viet-tu{
+            top: 65%;
+            left: 25%;
+       }
+       #home-setting{
+            top: 65%;
+            left: 60%;
+            
+       }
+       .home-{
+            display: flex;
+            width: 90%;
+            height: 250px;
+            border-radius: 50px;
+            text-align: center;
+            justify-content: center;
+            font-size: 42px;
+            color: var(--clr);
+            cursor: pointer;
+            background: #e8eaed;
+            border: 2px solid black;
+            background: linear-gradient(145deg, #f0f0f0, #cacaca);
+            box-shadow:  20px 20px 60px #8d8d8d,
+             -20px -20px 60px #ffffff;
+       }
+       
+       
+       .home-:hover{
+            transform: scale(1.01);
+            background: var(--clr);
+            color: black;
+       }
+       .home- img{
+            z-index: 0;
+       }
+       .home- h3{
+            z-index: 2;
+       }
+        label {
+            font: 1rem 'Fira Sans', sans-serif;
+        }
+
+        input {
+            margin: .4rem;
+        }
+        fieldset{
+            width: 168px;
+            color: beige;
+        }
+        #setting{
+            position: absolute;
+            left: -300px;
+            width: 200px;
+            background-image:  linear-gradient(0deg, rgb(9, 162, 244), rgb(56, 40, 108));;
+            box-shadow:  20px 20px 41px #c1c2c5,
+                        -20px -20px 41px #ffffff;
+            transition: .5s;
+            top: 50%;
+        }
+        #back_setting_button{
+            position: absolute;
+            bottom: -5%;
+            left: -36px;
+            width: 30px;
+            height: 50px;
+            transform: scale(3) rotate(-180deg);
+            cursor: pointer;
+        }
+        #o{
+            /**position: absolute;**/
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            color: aliceblue;
+            text-align: center;
+        }
+        #o h1{
+            font-size: 30px;
+            
+            
+        }
+        #consonants_list{
+            position: absolute;
+            width: 100%;
+            height: 90%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 1em;
+            transition: 1s;
+            transform: scale(0);
+            
+        }
+        #consonants_list::after{
+            
+            position: relative;
+        }
+        .pl_button{
+            cursor: pointer;
+        }
+        .pl_button:hover{
+            font-size: 20px;
+        }
+        #video_frame{
+            position: fixed;
+            width: 500px;
+            height: 250px;
+            top: 50%;
+            right: 0%;
+            border: 1px solid black;
+            background-color: antiquewhite;
+            display: none;
+        }
+        #video_frame{
+            transform: translateY(-50%);
+        }
+        #video_frame::after{
+            position: relative;
+        }
+        #vowel_box{
+            position: absolute;
+            width: 100%;
+            height: 70%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 1em;
+            transition: 1s;
+            transform: scale(0);
+        }
+
+        #vowel_box::after{
+            position: relative;
+        }
+        .table{
+            color: black;
+            border-radius: 16px;
+            background: #e0e0e0;
+            box-shadow: inset 5px 5px 10px #8d8d8d,
+                        inset -5px -5px 10px #ffffff;
+
+        }
+        #huong_dan_cam_but{
+            position: absolute;
+            top: 10%;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 42px;
+            color: rgb(9, 9, 9);
+            cursor: pointer;
+            background: #e8eaed;
+            border: 2px solid black;
+            background: linear-gradient(145deg, #f0f0f0, #cacaca);
+            box-shadow:  20px 20px 60px #8d8d8d,
+             -20px -20px 60px #ffffff;
+
+            height: max-content;
+            width: 100%;
+            transform: scale(.8) translateY(50px);
+        }
+        #button_close_huong_dan_cam_but{
+            background-color: blueviolet;
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+        .home{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        /****/
+       /** mobile **/
+        @media (max-width: 500px) {
+            /**.home{
+                position: absolute;
+                padding-top: 20%;
+                height: 200%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            **/
+            .home-{
+                align-items: center;
+            }
+            .home- img{
+                position: absolute;
+                transform: scale(.5);
+            }
+            .home{
+                position: absolute;
+                display: flex;
+                gap: 25px;
+                flex-direction: column;
+                
+            }
+            #home-header{
+                position: relative;
+                top: 0%;
+            }
+            #setting{
+                top: 75%;
+            }
+            #padding{
+                height: 100px;
+            }
+            
+            
+            
+        }
+        /****/
+    </style>
+</head>
+<body>
+    <div id="background"></div>
+    <div id="home-header"> <h1>TỰ LUYỆN VIẾT TIẾNG KHMER NAM BỘ</h1></div>
+    <div id="padding"></div>
+    <div class="home">
+        
+        <div class="home-" id="consonants" style="--clr:#1e9bff;" onclick="open_consonant_button()"><img src="./image/bg_conconant.png" alt=""><h3>Phụ âm</h3></div>
+        <div class="home-" id="vowel" style="--clr:#ff1867;" onclick="open_vowel_button()"><img src="./image/bg_vowel.png" alt=""><h3>Nguyên âm</h3></div>
+        
+        <div class="home-" id="home-setting" onclick="open_setting()" style="--clr:#6eff3e;"><img src="./image/bg_setting.png" alt=""><h3>&#x2699;</h3></div>
+    </div>
+    <div id="setting">
+        <div id="back_setting_button" onclick="back_setting_button()">&#10161;</div>
+        <fieldset>
+            <legend> Chọn ngôn ngữ: </legend>
+        
+            <div>
+              <input type="radio" id="viet" name="language" value="viet"
+                     checked>
+              <label for="huey">Tiếng Việt</label>
+            </div>
+        
+            <div>
+              <input type="radio" id="khmer" name="language" value="khmer">
+              <label for="dewey">ភាសាខ្មែរ</label>
+            </div>
+        
+            <div>
+              <input type="radio" id="anh" name="language" value="english">
+              <label for="louie">English</label>
+            </div>
+        </fieldset>
+        
+    </div>
+    <div id="consonants_list" >
+        <div id="back_setting_button" onclick="back_consonant_button()">&#10161;</div>
+    </div>
+    <div id="vowel_box" >
+        <div id="back_setting_button" onclick="back_vowel_button()">&#10161;</div>
+    </div>
+    <div id="video_frame">
+        <video id="my_video" autoplay muted loop width="100%" height="100%">
+            <source id="video_src" src="" type="video/mp4">
+        </video>
+    </div>
+    <div id="huong_dan_cam_but" ><b>Cầm bút đúng cách</b><br>
+        Cầm bút bằng 3 ngón tay: ngón cái, ngón trỏ và ngón giữa. Trong đó, ngón cái giữ bên trái thân bút. Ngón trỏ đặt ở giữa thân bút, cách đầu ngòi bút khoảng 2cm.
+        Ngón cái và ngón trỏ có vai trò điều khiển hướng đi của bút. Ngón tay giữa đặt ở phía bên phải để đỡ bút. Bút được giữ trong tay bé ở mức độ vừa phải, không lỏng quá hay chặt quá. <br>
+        
+         
+        
+        <b>Để bút đúng hướng</b> <br>
+        Sau khi đã cầm bút đúng cách, bạn cần giữ cổ tay cho thẳng. Hướng đặt bút theo hướng ngồi, góc bút nghiêng khoảng 45 độ so với mặt giấy. <br>
+        
+         
+        
+         <b>Để vở ở vị trí phù hợp</b><br>
+         
+        
+        Nếu viết chữ đứng, bạn cần để vở ngay ngắn trước mặt. Nếu viết chữ nghiêng thì có thể đặt hơi nghiêng sang trái so với mặt bàn khoảng 15 độ. <br>
+        
+         
+        
+         <b>Điều khiển bút khi viết</b> <br>
+         
+        
+        Dùng các ngón tay và cơ cổ tay để điều khiển bút khi viết. Hướng đưa bút là từ trái sang phải, từ trên xuống dưới. Cánh tay và cổ tay cần phối hợp nhịp nhàng với nhau để di chuyển bút theo chiều ngang. <br>
+        
+         
+        
+        Khi viết, tránh để đầu bút ấn mạnh vào mặt giấy vì điều này có thể làm nét bút quá sâu gây ra hiện tượng in mực sang trang sau, rách giấy. <br>
+        
+         
+        
+        <b>Chú ý di chuyển vở theo hướng viết </b><br>
+         
+        
+        Nếu bạn viết chữ về bên phải, vở cần dịch sang bên trái. Điều này sẽ giúp bạn nhìn thẳng vào nét chữ và viết chữ đúng, đẹp hơn. Từ đó, bạn sẽ viết chữ đúng quy chuẩn mà không bị ảnh hưởng đến <br>
+        <button id="button_close_huong_dan_cam_but" onclick="close_huong_dan_cam_but()">Đóng</button>
+    </div>
+        
+</body>
+<script>
+    function close_huong_dan_cam_but(){
+        document.getElementById("huong_dan_cam_but").style.display = 'none'
+    }
+    //setting
+    function open_setting(){
+        document.getElementById("setting").style.left = '50%'
+        document.getElementById("setting").style.transform = "translateX(-50%)"
+        var home_id = ["consonants","vowel","home-setting"]
+        for (i in home_id){
+            document.getElementById(home_id[i]).style.opacity = "20%"
+        }
+        
+    }
+    function back_setting_button(){
+        document.getElementById("setting").style.left = "-300px"
+        let home_id = ["consonants","vowel","home-luyen-viet-tu","home-setting"]
+        let languages = {"khmer": {"header": "សសេរភាសាខ្មែវដោយខ្លួនឯង","consonants": "ព្យញ្ជនះ","vowel": "ស្រះ","practice": "លំហាត់"},"viet": {"header": "TỰ LUYỆN VIẾT TIẾNG KHMER NAM BỘ","consonants": "Phụ âm","vowel": "Nguyên âm","practice": "Luyện Tập"},"english": {"header": "Selt-taught writing Khmer","consonants": "consonants","vowel": "vowel","practice": "practice"}}
+        let language_selected =document.querySelector("input[name=language]:checked").value
+        let language
+        if (language_selected == "viet"){
+            language = languages.viet
+        }else{
+            if (language_selected == "khmer"){
+                language = languages.khmer
+            }else{
+                language = languages.english
+            }
+        }
+        
+        let header=document.getElementById("home-header")
+        let consonants=document.getElementById("consonants")
+        let vowel=document.getElementById("vowel")
+        
+        header.innerHTML = "<h1>" +language.header + "</h1>"
+        consonants.innerHTML= '<img src="./image/bg_conconant.png" alt="">' + "<h3>" +language.consonants+ "</h3>"
+        vowel.innerHTML= '<img src="./image/bg_vowel.png" alt="">' + "<h3>" +language.vowel+ "</h3>"
+        header.style.opacity = "100%"
+        consonants.style.opacity = "100%"
+        vowel.style.opacity = "100%"
+        document.getElementById("home-setting").style.opacity = "100%"
+    }
+    //​phụ âm
+    let consonants ='កខគឃងចឆជឈញដឋឌឍណតថទធនបផពភមយរលវសហឡអ'
+    var consonant_box = document.getElementById("consonants_list")
+    for (i in consonants){
+        l = i % 5 *104
+        t =  (i-(i%5)) *22
+        
+        let s = document.createElement("span")
+        s.style.position = "absolute"
+        s.id = "consonant" + i
+        s.className = "table"
+        s.style.width = "100px"
+        s.style.height = "100px"
+        s.style.textAlign = "center"
+        //s.style.color = "aliceblue"
+        //s.style.border = "2px solid black"
+        s.style.left = l + 'px'
+        s.style.top = t  + 'px'
+        //s.style.backgroundColor = "darkslateblue"
+        s.innerHTML = '<h1>' + consonants[i] + '</h1><span class="pl_button pl_conconant_button" id="' + i +'" onclick="playvideo()">&#9654;</span>'
+        s.style.fontSize = "15px"
+        consonant_box.appendChild(s)
+    }
+
+    function back_consonant_button(){
+        consonant_box.style.transform ="scale(0)"
+        change_src_video('')
+        var home_id = ["consonants","vowel","home-setting"]
+        document.getElementById("video_frame").style.display = "none"
+        for (i in home_id){
+            document.getElementById(home_id[i]).style.opacity = "100%"
+        }
+    }
+    function open_consonant_button(){
+        
+        consonant_box.style.left ="50%"
+        document.getElementById("video_frame").style.display = "unset"
+        document.getElementById("video_frame").style.right = "5%"
+        
+        if (screen.width >=500){
+            consonant_box.style.transform = "scale(1) "
+        }else{
+            consonant_box.style.transform = "scale(.7) translateX(-30%)"
+        }
+        consonant_box.style.left = "50px"
+        if (screen.width < 1143){
+            consonant_box.style.top = screen.height/2 + 300 + "px"
+        }else{
+            consonant_box.style.top = "25%"
+        }
+               
+        var home_id = ["consonants","vowel","home-setting"]
+        for (i in home_id){
+            document.getElementById(home_id[i]).style.opacity = "20%"
+        }
+    }
+
+    // nguyên âm
+    var vowel_box = document.getElementById("vowel_box")
+    let vowel = ["ា", "ិ", "ី", "ឹ", "ឺ", "ុ", "ូ", "ួ", "ើ", "ឿ", "ៀ", "េ", "ែ", "ៃ", "ោ", "ៅ", "ុំ", "ំ", "ាំ", "ះ", "ុះ", "េះ", "ោះ"]
+
+    for ( i in vowel){
+        l = i % 5 *104
+        t =  (i-(i%5)) *22
+        let s = document.createElement("span")
+
+        s.style.position = "absolute"
+        s.className = "table"
+        s.id = "vowel" + i
+        s.style.width = "100px"
+        s.style.height = "100px"
+        s.style.textAlign = "center"
+        //s.style.color = "aliceblue"
+        //s.style.border = "2px solid black"
+        s.style.left = l + 'px'
+        s.style.top = t + 'px'
+        //s.style.backgroundColor = "darkslateblue"
+        s.innerHTML = '<h1>' + vowel[i] + '</h1><span class="pl_button pl_vowel_button" id="' +i + '">&#9654;</span>'
+        s.style.fontSize = "15px"
+        vowel_box.appendChild(s)
+        
+    }
+    
+    function back_vowel_button(){
+        
+        vowel_box.style.transform ="scale(0)"
+        document.getElementById("video_frame").style.display = "none"
+        change_src_video('')
+        var home_id = ["consonants","vowel","home-setting"]
+        for (i in home_id){
+            document.getElementById(home_id[i]).style.opacity = "100%"
+        }
+        
+    }
+    function open_vowel_button(){
+        document.getElementById("video_frame").style.display = "unset"
+        document.getElementById("video_frame").style.right = "5%"
+        vowel_box.style.left = "50px"
+        if (screen.width < 1143){
+            vowel_box.style.top = screen.height/2 + 300 + "px"
+        }else{
+            vowel_box.style.top = "25%"
+        }
+        
+        if (screen.width>500){
+            vowel_box.style.transform = "scale(1)"
+        }else{
+            vowel_box.style.transform = "scale(.7) translateX(-30%)"
+        }
+        
+        var home_id = ["consonants","vowel","home-setting"]
+        for (i in home_id){
+            document.getElementById(home_id[i]).style.opacity = "20%"
+        }
+        
+    }
+    // phát video 
+    var consonant = document.getElementsByClassName("pl_conconant_button")
+    for (i in consonant){
+            consonant[i].onclick = function(){
+                let src = './video/conconants_video/1207(' + this.id + ').mp4'
+                change_src_video(src)
+            
+            }
+    }
+    var dau = document.getElementsByClassName("pl_vowel_button")
+    for (i in dau){
+        dau[i].onclick = function(){
+            let src = './video/vowel_video/1208(' + this.id + ').mp4'
+            change_src_video(src)
+        }
+    }
+   
+    function change_src_video(src){
+        let video_frame = document.getElementById("my_video")
+            let video_src = document.getElementById("video_src")
+            video_src.src = src
+            document.getElementById("my_video").load()
+    }
+    
+</script>
+</html>
